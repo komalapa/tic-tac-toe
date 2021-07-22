@@ -29,8 +29,9 @@ class TicTacToe {
     }
 
     isFinished() {
-        if (this.winner) return this.winner;
-        if (this.isDraw) return null;
+        if (this.winner) return true;
+        if (this.isDraw()) return true;
+        return false;
 
     }
 
@@ -40,12 +41,12 @@ class TicTacToe {
     }
 
     noMoreTurns() {
-        if (this.isDraw()) return true
+        if (this.isFull()) return true
         return false
     }
 
     isDraw() {
-        if (this.winner || this.isFull()) return false
+        if (this.winner || !this.isFull()) return false
         
         //console.log(this.field, this.isDraw(), this.winner)
         return true
@@ -57,13 +58,10 @@ class TicTacToe {
     isFull(){
         for (let i=0; i< this.field.length; i++){
             for (let j=0; j< this.field[i].length; j++){
-                if (this.field[i][j] === null) return false
+                if (this.field[i][j] == null) return false
             }
         }
-    }
-
-    whoIsWinner(){
-        
+        return true
     }
 }
 
